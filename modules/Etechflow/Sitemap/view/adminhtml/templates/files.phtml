@@ -1,0 +1,56 @@
+<?php
+/** @var \Etechflow\Sitemap\Block\Adminhtml\Sitemap\Files $block */
+$files = $block->getFiles();
+?>
+<div class="admin__page-section">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $block->escapeHtml(__('XML Sitemap')) ?></span>
+    </div>
+
+    <?php if (!$block->isEnabled()): ?>
+        <div class="message message-warning">
+            <?= $block->escapeHtml(__('The sitemap is currently disabled. Enable it under Stores > Configuration > Etechflow > Sitemap, then generate.')) ?>
+        </div>
+    <?php endif; ?>
+
+    <div class="admin__field" style="margin: 1.5rem 0;">
+        <form action="<?= $block->escapeUrl($block->getGenerateUrl()) ?>" method="post">
+            <?= $block->getBlockHtml('formkey') ?>
+            <button type="submit" class="action-primary">
+                <span><?= $block->escapeHtml(__('Generate Now')) ?></span>
+            </button>
+            <span style="margin-left: 1rem; color: #666;">
+                <?= $block->escapeHtml(__('Rebuilds the sitemap for every enabled store view immediately.')) ?>
+            </span>
+        </form>
+    </div>
+
+    <?php if ($files): ?>
+        <table class="admin__table-primary data-grid">
+            <thead>
+                <tr>
+                    <th><?= $block->escapeHtml(__('File')) ?></th>
+                    <th><?= $block->escapeHtml(__('Size')) ?></th>
+                    <th><?= $block->escapeHtml(__('Last Modified')) ?></th>
+                    <th><?= $block->escapeHtml(__('Link')) ?></th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($files as $file): ?>
+                    <tr>
+                        <td><?= $block->escapeHtml($file['name']) ?></td>
+                        <td><?= $block->escapeHtml($file['size']) ?></td>
+                        <td><?= $block->escapeHtml($file['modified']) ?></td>
+                        <td>
+                            <a href="<?= $block->escapeUrl($file['url']) ?>" target="_blank" rel="noopener">
+                                <?= $block->escapeHtml(__('View')) ?>
+                            </a>
+                        </td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    <?php else: ?>
+        <p><?= $block->escapeHtml(__('No sitemap files have been generated yet.')) ?></p>
+    <?php endif; ?>
+</div>

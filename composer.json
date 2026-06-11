@@ -1,6 +1,6 @@
 {
     "name": "etechflow/seo-suite",
-    "description": "The complete Etechflow SEO Suite for Magento 2 — 7 modules: structured data, redirects, AI + rule-based meta, SEO auditing, canonical/hreflang, and SEO-friendly layered navigation.",
+    "description": "The complete Etechflow SEO Suite for Magento 2 — 8 modules: structured data, redirects, AI + rule-based meta, SEO auditing, canonical/hreflang, SEO-friendly layered navigation, and an advanced XML sitemap.",
     "type": "metapackage",
     "license": "proprietary",
     "version": "1.0.0",
@@ -13,6 +13,7 @@
         "etechflow/module-meta-templates": "^1.0",
         "etechflow/module-seo-audit": "^1.0",
         "etechflow/module-canonical-hreflang": "^1.0",
-        "etechflow/module-seo-layered-nav": "^1.0"
+        "etechflow/module-seo-layered-nav": "^1.0",
+        "etechflow/module-sitemap": "^1.0"
     }
 }

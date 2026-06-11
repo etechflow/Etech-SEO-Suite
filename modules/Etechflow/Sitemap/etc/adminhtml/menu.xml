@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Etechflow_Sitemap::sitemap"
+             title="Etechflow Sitemap"
+             module="Etechflow_Sitemap"
+             sortOrder="90"
+             parent="Magento_Backend::marketing_seo"
+             action="etechflow_sitemap/sitemap/index"
+             resource="Etechflow_Sitemap::sitemap"/>
+    </menu>
+</config>

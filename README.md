@@ -1,8 +1,8 @@
 # Etechflow SEO Suite
 
-A complete, production-grade **SEO toolkit for Magento 2** (Open Source / Adobe Commerce, 2.4.x, PHP ≥ 8.1, Hyvä + Luma). Seven focused modules that cover the full SEO surface — and work together: the **SEO Audit** finds problems and points at the module that fixes each one.
+A complete, production-grade **SEO toolkit for Magento 2** (Open Source / Adobe Commerce, 2.4.x, PHP ≥ 8.1, Hyvä + Luma). Eight focused modules that cover the full SEO surface — and work together: the **SEO Audit** finds problems and points at the module that fixes each one.
 
-`composer require etechflow/seo-suite` installs all seven. Or buy any module à la carte.
+`composer require etechflow/seo-suite` installs all eight. Or buy any module à la carte.
 
 ## The modules
 
@@ -15,6 +15,7 @@ A complete, production-grade **SEO toolkit for Magento 2** (Open Source / Adobe 
 | **SEO Audit** | `etechflow/module-seo-audit` | On-demand SEO health **score (0–100)** + issue dashboard: missing/duplicate meta, thin content, orphaned products, 404s, redirect chains — each tagged with the suite module that fixes it. |
 | **Canonical & Hreflang** | `etechflow/module-canonical-hreflang` | Category-free canonical URLs, query-param de-duplication, pagination control, and hreflang for multi-store/locale catalogues. |
 | **SEO Layered Nav** | `etechflow/module-seo-layered-nav` | Human-readable filter URLs (`?manufacturer=yale`, two-way slug↔id) + canonical/robots/sitemap control for filter pages. |
+| **Sitemap** | `etechflow/module-sitemap` | Advanced XML sitemap — products/categories/CMS/custom URLs, image entries, hreflang alternates, exclude rules, index splitting, multi-store, CLI + cron. |
 
 ## How they fit together
 
@@ -24,6 +25,7 @@ The **SEO Audit** is the hub: run a scan and every finding links to its fix —
 - *404s & redirect chains* → **Redirect Manager**
 - *Missing structured data* → **Rich Snippets**
 - *Duplicate filter/category URLs* → **Canonical & Hreflang** + **SEO Layered Nav**
+- *Missing / stale XML sitemap* → **Sitemap**
 
 ## Install
 
@@ -38,6 +40,7 @@ These modules are distributed from the `etechflow` GitHub organisation. Add the 
     "etechflow-seo-audit":         { "type": "vcs", "url": "https://github.com/etechflow/Etech-SEO-Audit.git" },
     "etechflow-canonical":         { "type": "vcs", "url": "https://github.com/etechflow/Etech-Canonical-Hreflang.git" },
     "etechflow-layered-nav":       { "type": "vcs", "url": "https://github.com/etechflow/Etech-SEO-Layered-Nav.git" },
+    "etechflow-sitemap":           { "type": "vcs", "url": "https://github.com/etechflow/Etech-Sitemap.git" },
     "etechflow-seo-suite":         { "type": "vcs", "url": "https://github.com/etechflow/Etech-SEO-Suite.git" }
 }
 ```
@@ -47,7 +50,7 @@ composer require etechflow/seo-suite:^1.0
 bin/magento module:enable \
   Etechflow_RichSnippets Etechflow_RedirectManager Etechflow_AiSeo \
   Etechflow_MetaTemplates Etechflow_SeoAudit Etechflow_CanonicalHreflang \
-  ETechFlow_SeoLayeredNav
+  ETechFlow_SeoLayeredNav Etechflow_Sitemap
 bin/magento setup:upgrade
 bin/magento setup:di:compile           # production mode
 bin/magento setup:static-content:deploy -f
@@ -66,7 +69,7 @@ Proprietary — © eTechFlow. Each module is independently licensed; the suite i
 
 ## Bundled module source
 
-This repository also includes the full source of all 7 modules under `modules/` for reference and monorepo installs:
+This repository also includes the full source of all 8 modules under `modules/` for reference and monorepo installs:
 
 - `modules/Etechflow/SeoAudit` — on-demand SEO health audit + 0-100 score dashboard
 - `modules/Etechflow/CanonicalHreflang` — canonical URLs + hreflang
@@ -75,5 +78,6 @@ This repository also includes the full source of all 7 modules under `modules/` 
 - `modules/Etechflow/RichSnippets` — Hyvä-native @graph JSON-LD structured data
 - `modules/Etechflow/RedirectManager` — 301/302 redirects + 404 catcher
 - `modules/Etechflow/SeoLayeredNav` — SEO-friendly layered-navigation filter URLs (namespace `ETechFlow\SeoLayeredNav`)
+- `modules/Etechflow/Sitemap` — advanced XML sitemap generator (images, hreflang, excludes, index splitting, CLI + cron)
 
-The `composer.json` above is the metapackage definition (pulls the 7 published packages); the `modules/` tree is the bundled source for those same modules.
+The `composer.json` above is the metapackage definition (pulls the 8 published packages); the `modules/` tree is the bundled source for those same modules.

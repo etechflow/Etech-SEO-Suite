@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="etechflow" translate="label" sortOrder="400">
+            <label>Etechflow</label>
+        </tab>
+        <section id="etechflow_sitemap" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Sitemap</label>
+            <tab>etechflow</tab>
+            <resource>Etechflow_Sitemap::config</resource>
+
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Sitemap</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Master switch. While OFF, neither cron nor the CLI/admin "Generate Now" produce files.</comment>
+                </field>
+                <field id="path" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Output path</label>
+                    <comment>Directory under the web root (pub/) to write into. "/" writes sitemap.xml to the site root so it is reachable at https://domain/sitemap.xml.</comment>
+                </field>
+                <field id="filename" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Index filename</label>
+                    <comment>Name of the master file (a sitemap index when split across multiple files). Default: sitemap.xml</comment>
+                </field>
+                <field id="max_urls" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Max URLs per file</label>
+                    <comment>The sitemaps.org protocol caps a single file at 50,000 URLs. When exceeded, files are split and a sitemap index is written.</comment>
+                </field>
+            </group>
+
+            <group id="product" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Products</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Include products</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="changefreq" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Change frequency</label>
+                    <source_model>Etechflow\Sitemap\Model\Source\Changefreq</source_model>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="priority" translate="label comment" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Priority</label>
+                    <source_model>Etechflow\Sitemap\Model\Source\Priority</source_model>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="add_images" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add product images</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Emit &lt;image:image&gt; entries for each product's gallery images.</comment>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+            </group>
+
+            <group id="category" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Categories</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Include categories</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="changefreq" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Change frequency</label>
+                    <source_model>Etechflow\Sitemap\Model\Source\Changefreq</source_model>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="priority" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Priority</label>
+                    <source_model>Etechflow\Sitemap\Model\Source\Priority</source_model>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+            </group>
+
+            <group id="cms" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>CMS Pages</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Include CMS pages</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="changefreq" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Change frequency</label>
+                    <source_model>Etechflow\Sitemap\Model\Source\Changefreq</source_model>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+                <field id="priority" translate="label" type="select" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Priority</label>
+                    <source_model>Etechflow\Sitemap\Model\Source\Priority</source_model>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+            </group>
+
+            <group id="custom" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Additional URLs</label>
+                <field id="urls" translate="label comment" type="textarea" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom URLs</label>
+                    <comment><![CDATA[One per line. Format: <b>path</b> or <b>path|priority|changefreq</b>. A relative path is resolved against the store base URL; an absolute http(s) URL is used as-is. Example: <code>/about-us|0.6|monthly</code>]]></comment>
+                </field>
+            </group>
+
+            <group id="exclude" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Exclusions</label>
+                <field id="product_skus" translate="label comment" type="textarea" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Exclude product SKUs</label>
+                    <comment>Comma- or newline-separated SKUs to omit from the sitemap.</comment>
+                </field>
+                <field id="category_ids" translate="label comment" type="textarea" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Exclude category IDs</label>
+                    <comment>Comma- or newline-separated category entity IDs to omit.</comment>
+                </field>
+                <field id="cms_identifiers" translate="label comment" type="textarea" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Exclude CMS identifiers</label>
+                    <comment>Comma- or newline-separated CMS page identifiers (URL keys) to omit.</comment>
+                </field>
+            </group>
+
+            <group id="hreflang" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Hreflang</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Add hreflang alternates</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>For multi-store-view websites, emit &lt;xhtml:link rel="alternate" hreflang="..."&gt; pointing at the same entity in each store view of its website.</comment>
+                </field>
+            </group>
+
+            <group id="cron" translate="label" type="text" sortOrder="80" showInDefault="1" showInStore="0" showInWebsite="0">
+                <label>Scheduled Generation</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInStore="0" showInWebsite="0">
+                    <label>Auto-generate daily</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>When ON, the sitemap is rebuilt every night at 03:00 (server time) by cron. You can always rebuild on demand from Marketing &gt; Etechflow Sitemap, or via bin/magento etechflow:sitemap:generate.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

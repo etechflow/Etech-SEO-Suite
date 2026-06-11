@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="etechflow_sitemap_generate" xsi:type="object">Etechflow\Sitemap\Console\Command\GenerateCommand</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- Ordered list of content providers consumed by the Generator -->
+    <type name="Etechflow\Sitemap\Model\Generator">
+        <arguments>
+            <argument name="providers" xsi:type="array">
+                <item name="product" xsi:type="object">Etechflow\Sitemap\Model\Provider\ProductProvider</item>
+                <item name="category" xsi:type="object">Etechflow\Sitemap\Model\Provider\CategoryProvider</item>
+                <item name="cms" xsi:type="object">Etechflow\Sitemap\Model\Provider\CmsProvider</item>
+                <item name="custom" xsi:type="object">Etechflow\Sitemap\Model\Provider\CustomProvider</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

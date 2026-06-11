@@ -1,0 +1,18 @@
+{
+    "name": "etechflow/module-sitemap",
+    "description": "Advanced XML sitemap generator for Magento 2 — products, categories, CMS and custom URLs, with image entries, hreflang alternates, exclude rules, sitemap-index splitting, cron and CLI.",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "version": "1.0.0",
+    "require": {
+        "php": ">=8.1",
+        "magento/module-sitemap": "*",
+        "magento/module-store": "*",
+        "magento/module-catalog": "*",
+        "magento/module-cms": "*"
+    },
+    "autoload": {
+        "files": ["registration.php"],
+        "psr-4": { "Etechflow\\Sitemap\\": "" }
+    }
+}
