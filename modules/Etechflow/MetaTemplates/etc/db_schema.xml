@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="etechflow_metatemplate" resource="default" engine="innodb" comment="Etechflow Meta Templates">
+        <column xsi:type="int" name="template_id" unsigned="true" nullable="false" identity="true" comment="ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Rule name"/>
+        <column xsi:type="varchar" name="applies_to" nullable="false" length="20" default="product" comment="product|category|cms_page"/>
+        <column xsi:type="smallint" name="store_id" unsigned="true" nullable="false" default="0" comment="Store (0=all)"/>
+        <column xsi:type="int" name="category_id" unsigned="true" nullable="true" comment="Optional: products in this category"/>
+        <column xsi:type="int" name="priority" nullable="false" default="0" comment="Higher wins"/>
+        <column xsi:type="smallint" name="is_active" unsigned="true" nullable="false" default="1" comment="Active"/>
+        <column xsi:type="varchar" name="meta_title" nullable="true" length="500" comment="Title template"/>
+        <column xsi:type="text" name="meta_description" nullable="true" comment="Description template"/>
+        <column xsi:type="text" name="meta_keywords" nullable="true" comment="Keywords template"/>
+        <column xsi:type="timestamp" name="created_at" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Created"/>
+        <column xsi:type="timestamp" name="updated_at" on_update="true" nullable="false" default="CURRENT_TIMESTAMP" comment="Updated"/>
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="template_id"/>
+        </constraint>
+        <index referenceId="ETECHFLOW_METATEMPLATE_APPLIES_TO_STORE_ID_IS_ACTIVE" indexType="btree">
+            <column name="applies_to"/>
+            <column name="store_id"/>
+            <column name="is_active"/>
+        </index>
+    </table>
+</schema>

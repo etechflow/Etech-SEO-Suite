@@ -1,0 +1,12 @@
+{
+    "name": "etechflow/module-redirect-manager",
+    "description": "301/302 redirect manager with auto-redirect on URL-key change and a 404 catcher.",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "version": "1.0.0",
+    "require": { "php": ">=8.1" },
+    "autoload": {
+        "files": ["registration.php"],
+        "psr-4": { "Etechflow\\RedirectManager\\": "" }
+    }
+}

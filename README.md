@@ -63,3 +63,17 @@ Magento Open Source / Adobe Commerce **2.4.x** · PHP **≥ 8.1** · Hyvä + Lum
 ## License
 
 Proprietary — © eTechFlow. Each module is independently licensed; the suite is the convenience bundle.
+
+## Bundled module source
+
+This repository also includes the full source of all 7 modules under `modules/` for reference and monorepo installs:
+
+- `modules/Etechflow/SeoAudit` — on-demand SEO health audit + 0-100 score dashboard
+- `modules/Etechflow/CanonicalHreflang` — canonical URLs + hreflang
+- `modules/Etechflow/MetaTemplates` — rule-based meta title/description/keywords
+- `modules/Etechflow/AiSeo` — AI-generated meta (Anthropic/OpenAI)
+- `modules/Etechflow/RichSnippets` — Hyvä-native @graph JSON-LD structured data
+- `modules/Etechflow/RedirectManager` — 301/302 redirects + 404 catcher
+- `modules/Etechflow/SeoLayeredNav` — SEO-friendly layered-navigation filter URLs (namespace `ETechFlow\SeoLayeredNav`)
+
+The `composer.json` above is the metapackage definition (pulls the 7 published packages); the `modules/` tree is the bundled source for those same modules.

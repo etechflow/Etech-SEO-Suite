@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Etechflow_RedirectManager::redirect_manager" title="Redirect Manager" module="Etechflow_RedirectManager"
+             sortOrder="80" parent="Magento_Backend::marketing" resource="Etechflow_RedirectManager::redirect_manager"/>
+        <add id="Etechflow_RedirectManager::redirect" title="Redirects" module="Etechflow_RedirectManager"
+             sortOrder="10" parent="Etechflow_RedirectManager::redirect_manager"
+             action="redirectmanager/redirect/index" resource="Etechflow_RedirectManager::redirect"/>
+        <add id="Etechflow_RedirectManager::log" title="404 Log" module="Etechflow_RedirectManager"
+             sortOrder="20" parent="Etechflow_RedirectManager::redirect_manager"
+             action="redirectmanager/log/index" resource="Etechflow_RedirectManager::log"/>
+        <add id="Etechflow_RedirectManager::config" title="Configuration" module="Etechflow_RedirectManager"
+             sortOrder="30" parent="Etechflow_RedirectManager::redirect_manager"
+             action="adminhtml/system_config/edit/section/etechflow_redirectmanager" resource="Etechflow_RedirectManager::config"/>
+    </menu>
+</config>

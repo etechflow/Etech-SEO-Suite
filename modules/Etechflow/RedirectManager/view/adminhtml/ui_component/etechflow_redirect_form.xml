@@ -1,0 +1,111 @@
+<?xml version="1.0"?>
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">etechflow_redirect_form.etechflow_redirect_form_data_source</item>
+        </item>
+        <item name="label" xsi:type="string" translate="true">Redirect</item>
+    </argument>
+    <settings>
+        <buttons>
+            <button name="back" class="Etechflow\RedirectManager\Block\Adminhtml\Redirect\Edit\BackButton"/>
+            <button name="delete" class="Etechflow\RedirectManager\Block\Adminhtml\Redirect\Edit\DeleteButton"/>
+            <button name="save_and_continue" class="Etechflow\RedirectManager\Block\Adminhtml\Redirect\Edit\SaveAndContinueButton"/>
+            <button name="save" class="Etechflow\RedirectManager\Block\Adminhtml\Redirect\Edit\SaveButton"/>
+        </buttons>
+        <namespace>etechflow_redirect_form</namespace>
+        <dataScope>data</dataScope>
+        <deps>
+            <dep>etechflow_redirect_form.etechflow_redirect_form_data_source</dep>
+        </deps>
+    </settings>
+    <dataSource name="etechflow_redirect_form_data_source">
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+        <settings>
+            <submitUrl path="redirectmanager/redirect/save"/>
+        </settings>
+        <dataProvider class="Etechflow\RedirectManager\Model\RedirectForm\DataProvider" name="etechflow_redirect_form_data_source">
+            <settings>
+                <requestFieldName>entity_id</requestFieldName>
+                <primaryFieldName>entity_id</primaryFieldName>
+            </settings>
+        </dataProvider>
+    </dataSource>
+    <fieldset name="general">
+        <settings>
+            <label translate="true">Redirect Details</label>
+        </settings>
+        <field name="entity_id" formElement="hidden">
+            <settings><dataType>number</dataType></settings>
+        </field>
+        <field name="request_path" formElement="input">
+            <settings>
+                <label translate="true">From (request path)</label>
+                <dataType>text</dataType>
+                <validation><rule name="required-entry" xsi:type="boolean">true</rule></validation>
+                <notice translate="true">Path without the domain, e.g. old-page or category/old. Leading slash not required.</notice>
+            </settings>
+        </field>
+        <field name="target_path" formElement="input">
+            <settings>
+                <label translate="true">To (target)</label>
+                <dataType>text</dataType>
+                <validation><rule name="required-entry" xsi:type="boolean">true</rule></validation>
+                <notice translate="true">A path (new-page) or a full URL (https://example.com/...).</notice>
+            </settings>
+        </field>
+        <field name="redirect_type" formElement="select">
+            <settings>
+                <label translate="true">Redirect type</label>
+                <dataType>number</dataType>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Etechflow\RedirectManager\Model\Config\Source\RedirectType"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="store_id" formElement="select">
+            <settings>
+                <label translate="true">Store View</label>
+                <dataType>number</dataType>
+            </settings>
+            <formElements>
+                <select>
+                    <settings>
+                        <options class="Etechflow\RedirectManager\Model\Config\Source\Stores"/>
+                    </settings>
+                </select>
+            </formElements>
+        </field>
+        <field name="is_active" formElement="checkbox">
+            <settings>
+                <label translate="true">Active</label>
+                <dataType>boolean</dataType>
+            </settings>
+            <formElements>
+                <checkbox>
+                    <settings>
+                        <valueMap>
+                            <map name="false" xsi:type="number">0</map>
+                            <map name="true" xsi:type="number">1</map>
+                        </valueMap>
+                        <prefer>toggle</prefer>
+                    </settings>
+                </checkbox>
+            </formElements>
+        </field>
+        <field name="description" formElement="input">
+            <settings>
+                <label translate="true">Note (internal)</label>
+                <dataType>text</dataType>
+            </settings>
+        </field>
+    </fieldset>
+</form>

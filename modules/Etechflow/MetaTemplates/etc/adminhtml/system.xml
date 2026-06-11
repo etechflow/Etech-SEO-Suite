@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="etechflow" translate="label" sortOrder="400">
+            <label>Etechflow</label>
+        </tab>
+        <section id="etechflow_metatemplates" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Meta Templates</label>
+            <tab>etechflow</tab>
+            <resource>Etechflow_MetaTemplates::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label tooltip" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Meta Templates</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <tooltip>Master switch. When OFF, no templates are applied.</tooltip>
+                </field>
+                <field id="mode" translate="label comment tooltip" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Apply mode</label>
+                    <source_model>Etechflow\MetaTemplates\Model\Config\Source\Mode</source_model>
+                    <comment>Fill-empty respects manually set product/category meta; Override always wins.</comment>
+                    <tooltip>"Only fill empty" never overwrites meta a product/category already has. "Always override" applies the template everywhere.</tooltip>
+                </field>
+            </group>
+            <group id="variables" translate="label" type="text" sortOrder="20" showInDefault="1">
+                <label>Available variables</label>
+                <comment><![CDATA[Use these in your templates (optional fallback: <b>{{var|fallback}}</b>):<br/>
+                    <b>Product:</b> {{product.name}}, {{product.sku}}, {{product.price}}, {{product.brand}}, {{product.category}}, {{product.&lt;attribute_code&gt;}}<br/>
+                    <b>Category:</b> {{category.name}}, {{category.description}}<br/>
+                    <b>CMS:</b> {{cms.title}} &nbsp; <b>Store:</b> {{store.name}}, {{store.url}}]]></comment>
+            </group>
+        </section>
+    </system>
+</config>

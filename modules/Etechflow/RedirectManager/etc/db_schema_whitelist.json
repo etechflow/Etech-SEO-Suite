@@ -1,0 +1,38 @@
+{
+    "etechflow_redirect": {
+        "column": {
+            "entity_id": true,
+            "request_path": true,
+            "target_path": true,
+            "redirect_type": true,
+            "store_id": true,
+            "is_active": true,
+            "hits": true,
+            "description": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "ETECHFLOW_REDIRECT_REQUEST_PATH_STORE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "etechflow_redirect_404_log": {
+        "column": {
+            "log_id": true,
+            "request_path": true,
+            "referrer": true,
+            "hits": true,
+            "store_id": true,
+            "redirect_id": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "ETECHFLOW_REDIRECT_404_LOG_REQUEST_PATH_STORE_ID": true
+        }
+    }
+}

@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <etechflow_redirectmanager>
+            <general>
+                <enabled>0</enabled>
+            </general>
+            <redirects>
+                <default_type>301</default_type>
+            </redirects>
+            <log404>
+                <enabled>1</enabled>
+                <exclude_patterns>\.(jpg|jpeg|png|gif|webp|svg|css|js|ico|map|woff2?|ttf)$</exclude_patterns>
+            </log404>
+        </etechflow_redirectmanager>
+    </default>
+</config>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Etechflow_MetaTemplates::template" title="Meta Templates" module="Etechflow_MetaTemplates"
+             sortOrder="82" parent="Magento_Backend::marketing" action="metatemplates/template/index"
+             resource="Etechflow_MetaTemplates::template"/>
+        <add id="Etechflow_MetaTemplates::config" title="Meta Templates Config" module="Etechflow_MetaTemplates"
+             sortOrder="83" parent="Magento_Backend::marketing"
+             action="adminhtml/system_config/edit/section/etechflow_metatemplates" resource="Etechflow_MetaTemplates::config"/>
+    </menu>
+</config>

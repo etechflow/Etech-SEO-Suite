@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="etechflow" translate="label" sortOrder="400">
+            <label>Etechflow</label>
+        </tab>
+        <section id="etechflow_redirectmanager" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Redirect Manager</label>
+            <tab>etechflow</tab>
+            <resource>Etechflow_RedirectManager::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label comment tooltip" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Redirect Manager</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Master switch. While OFF, no redirects fire and 404s are not logged.</comment>
+                    <tooltip>Turns the whole module on/off: the redirect engine and the 404 logger.</tooltip>
+                </field>
+            </group>
+            <group id="redirects" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Redirects</label>
+                <field id="default_type" translate="label tooltip" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Default redirect type</label>
+                    <source_model>Etechflow\RedirectManager\Model\Config\Source\RedirectType</source_model>
+                    <tooltip>Default HTTP status for new redirects. 301 = permanent (passes SEO value), 302 = temporary.</tooltip>
+                </field>
+            </group>
+            <group id="log404" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>404 Logging</label>
+                <field id="enabled" translate="label tooltip" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Log 404 (not-found) URLs</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <tooltip>Records every URL that returns a 404 so you can turn frequent ones into redirects.</tooltip>
+                </field>
+                <field id="exclude_patterns" translate="label comment tooltip" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Exclude pattern (regex)</label>
+                    <comment>Paths matching this regex are not logged.</comment>
+                    <tooltip>A regular expression; matching request paths are skipped (e.g. static asset extensions).</tooltip>
+                    <depends><field id="enabled">1</field></depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

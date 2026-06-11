@@ -1,0 +1,24 @@
+{
+    "etechflow_metatemplate": {
+        "column": {
+            "template_id": true,
+            "name": true,
+            "applies_to": true,
+            "store_id": true,
+            "category_id": true,
+            "priority": true,
+            "is_active": true,
+            "meta_title": true,
+            "meta_description": true,
+            "meta_keywords": true,
+            "created_at": true,
+            "updated_at": true
+        },
+        "index": {
+            "ETECHFLOW_METATEMPLATE_APPLIES_TO_STORE_ID_IS_ACTIVE": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    }
+}
