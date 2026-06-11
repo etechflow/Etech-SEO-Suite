@@ -34,7 +34,7 @@ class CategoryProvider implements ProviderInterface
     public function getItems(int $storeId): array
     {
         $store = $this->storeManager->getStore($storeId);
-        $baseUrl = rtrim($store->getBaseUrl(UrlInterface::URL_TYPE_LINK), '/');
+        $baseUrl = rtrim($store->getBaseUrl(UrlInterface::URL_TYPE_LINK, $store->isFrontUrlSecure()), '/');
         $changefreq = $this->config->getChangefreq('category', $storeId);
         $priority = $this->config->getPriority('category', $storeId);
         $excluded = array_flip($this->config->getExcludedCategoryIds($storeId));

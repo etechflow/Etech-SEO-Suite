@@ -40,7 +40,7 @@ class CustomProvider implements ProviderInterface
             return [];
         }
         $store = $this->storeManager->getStore($storeId);
-        $baseUrl = rtrim($store->getBaseUrl(UrlInterface::URL_TYPE_LINK), '/');
+        $baseUrl = rtrim($store->getBaseUrl(UrlInterface::URL_TYPE_LINK, $store->isFrontUrlSecure()), '/');
 
         $items = [];
         foreach ($lines as $line) {

@@ -127,7 +127,7 @@ class Generator
         $relDir = trim($this->config->getPath($storeId), '/');
         $filename = $this->config->getFilename($storeId);
         $maxUrls = $this->config->getMaxUrls($storeId);
-        $baseUrl = rtrim($store->getBaseUrl(UrlInterface::URL_TYPE_LINK), '/');
+        $baseUrl = rtrim($store->getBaseUrl(UrlInterface::URL_TYPE_LINK, $store->isFrontUrlSecure()), '/');
 
         $stem = preg_replace('/\.xml$/i', '', $filename) ?: 'sitemap';
         $perStem = ($storeId === $defaultStoreId) ? $stem : $stem . '-' . $store->getCode();

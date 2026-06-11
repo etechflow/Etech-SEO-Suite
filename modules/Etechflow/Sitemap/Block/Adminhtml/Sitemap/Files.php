@@ -7,6 +7,7 @@ use Etechflow\Sitemap\Model\Config;
 use Magento\Backend\Block\Template;
 use Magento\Backend\Block\Template\Context;
 use Magento\Framework\App\Filesystem\DirectoryList;
+use Magento\Framework\Data\Form\FormKey;
 use Magento\Framework\Filesystem;
 use Magento\Framework\UrlInterface;
 use Magento\Store\Model\StoreManagerInterface;
@@ -22,6 +23,7 @@ class Files extends Template
         private readonly Filesystem $filesystem,
         private readonly Config $config,
         private readonly StoreManagerInterface $storeManager,
+        private readonly FormKey $formKey,
         array $data = []
     ) {
         parent::__construct($context, $data);
@@ -30,6 +32,11 @@ class Files extends Template
     public function getGenerateUrl(): string
     {
         return $this->getUrl('etechflow_sitemap/sitemap/generate');
+    }
+
+    public function getFormKey(): string
+    {
+        return $this->formKey->getFormKey();
     }
 
     public function isEnabled(): bool
@@ -49,7 +56,7 @@ class Files extends Template
         }
         $storeId = (int) $store->getId();
         $relDir = trim($this->config->getPath($storeId), '/');
-        $baseUrl = rtrim($store->getBaseUrl(UrlInterface::URL_TYPE_LINK), '/');
+        $baseUrl = rtrim($store->getBaseUrl(UrlInterface::URL_TYPE_LINK, $store->isFrontUrlSecure()), '/');
 
         $read = $this->filesystem->getDirectoryRead(DirectoryList::PUB);
         if ($relDir !== '' && !$read->isExist($relDir)) {

@@ -15,7 +15,7 @@ $files = $block->getFiles();
 
     <div class="admin__field" style="margin: 1.5rem 0;">
         <form action="<?= $block->escapeUrl($block->getGenerateUrl()) ?>" method="post">
-            <?= $block->getBlockHtml('formkey') ?>
+            <input name="form_key" type="hidden" value="<?= $block->escapeHtmlAttr($block->getFormKey()) ?>"/>
             <button type="submit" class="action-primary">
                 <span><?= $block->escapeHtml(__('Generate Now')) ?></span>
             </button>

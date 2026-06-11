@@ -42,8 +42,9 @@ class ProductProvider implements ProviderInterface
     public function getItems(int $storeId): array
     {
         $store = $this->storeManager->getStore($storeId);
-        $baseUrl = rtrim($store->getBaseUrl(UrlInterface::URL_TYPE_LINK), '/');
-        $mediaUrl = rtrim($store->getBaseUrl(UrlInterface::URL_TYPE_MEDIA), '/');
+        $secure = $store->isFrontUrlSecure();
+        $baseUrl = rtrim($store->getBaseUrl(UrlInterface::URL_TYPE_LINK, $secure), '/');
+        $mediaUrl = rtrim($store->getBaseUrl(UrlInterface::URL_TYPE_MEDIA, $secure), '/');
 
         $changefreq = $this->config->getChangefreq('product', $storeId);
         $priority = $this->config->getPriority('product', $storeId);
@@ -82,8 +83,12 @@ class ProductProvider implements ProviderInterface
         // getProductsIdsBySkus is case-sensitive on the stored SKU; pass the raw
         // (un-lowercased) list too by reading config values directly is overkill —
         // we simply look up the lowercased set against a fetched map.
-        $resource = $this->catalogProductResourceFactory->create();
-        $map = $resource->getProductsIdsBySkus($skus); // [sku => id]
+        try {
+            $map = $this->catalogProductResourceFactory->create()->getProductsIdsBySkus($skus); // [sku => id]
+        } catch (\Throwable $e) {
+            // A failed SKU lookup must never drop every product from the sitemap.
+            return [];
+        }
         $ids = [];
         foreach ($map as $id) {
             $ids[(int) $id] = true;
